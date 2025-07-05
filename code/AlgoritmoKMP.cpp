@@ -121,7 +121,7 @@ int main(int argc, char* argv[]){
     std::string archivotxt=argv[1];
     std::string patron= argv[2];
     std::string txt=load_file("datasets/Concatenated/"+ archivotxt);
-    std::vector<std::string> pat=load_patterns("datasets/Concatenated/" + patron);
+    std::vector<std::string> pat=load_patterns("datasets/" + patron);
     
     double tiempo_total = 0;
 
