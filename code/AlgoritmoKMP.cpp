@@ -120,8 +120,8 @@ int main(int argc, char* argv[]){
 
     std::string archivotxt=argv[1];
     std::string patron= argv[2];
-    std::string txt=load_file("datasets/Concatenated/"+ archivotxt);
-    std::vector<std::string> pat=load_patterns("datasets/" + patron);
+    std::string txt=load_file(archivotxt);
+    std::vector<std::string> pat=load_patterns(patron);
     
     double tiempo_total = 0;
 
@@ -135,7 +135,7 @@ int main(int argc, char* argv[]){
     std::cout << "No se encontraron coincidencias para los patrones." << std::endl;
     } else {
         for (auto &inicio : res) {
-            std::cout << "Patrón " << inicio.first << " encontrado en posiciones: ";
+            std::cout << "Patron " << inicio.first << " encontrado en posiciones: ";
             for (int pos : inicio.second) {
                 std::cout << pos << " ";
             }
