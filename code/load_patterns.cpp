@@ -11,7 +11,7 @@ using namespace std;
 namespace fs = filesystem;
 
 vector<string> load_patterns(const string& file_name) {
-    fs::path directory = fs::path("../datasets/Concatenated") / file_name;
+    fs::path directory = fs::path("../datasets/") / file_name;
     ifstream input(directory);
     if (!input) {
         std::cout << "Error: No se pudo abrir el archivo de patrones: " << directory << std::endl;
