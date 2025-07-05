@@ -1,17 +1,19 @@
 /**
- *  Compilar como: g++ -std=c++17 -I../include AlgoritmoKMP.cpp load_file.cpp load_patterns.cpp -o AlgoritmoKMP 
- *  C++ program to search the pattern in given text using
+ *  Compilar como: g++ -std=c++17 -I../include AlgoritmoKMP.cpp load_file.cpp load_patterns.cpp -o AlgoritmoKMP
+ *  Ejecutar: .\algoritmokmp.exe <nombre_del_archivo_concatenado> <archivo_de_patrones>
+ * ************************************ 
+ *  Programa en C++ para buscar un patrón en un texto dado 
  *  KMP Algorithm
  * 
  * Implementación basada en el algoritmo Knuth-Morris-Pratt (KMP) de GeeksforGeeks.
  * Fuente original: https://www.geeksforgeeks.org/kmp-algorithm-for-pattern-searching/
  * Adaptado para:
  * 1. búsqueda en múltiples documentos con separador '$'.
- * 2. Retornar nombres de archivos donde se encuentren patrones.
- * 3. Manejar el caracter '$' como separador entre documentos.
+ * 2. manejar el caracter '$' como separador entre documentos.
+ * 3. recibir más de un patrón a buscar
  * Modificaciones principales: 
- * - Asignación de coincidencias a documentos originales.
- * - Optimización para retornar nombres de archivos.
+ * - uso de contenedor map <clave, valor> -> <patron, indice> (indice desde donde se encontró el patron en el texto)
+ * - Función search recibe un vector de string (patrones) en vez de sólo un string
  */
 
 #include <iostream>
@@ -112,7 +114,7 @@ std::map<std::string, std::vector<int>> search(std::vector<std::string> &patrone
 int main(int argc, char* argv[]){
     //Verificacion del numero de agumentos, queremos [nombre_ejecutable, nombre_del_archivo, patron a buscar]
     if(argc < 3 || argc > 3){
-        std::cout << "Uso: " << argv[0] << " <nombre_del_archivo> <patron_a_buscar>" << std::endl;
+        std::cout << "Uso: " << argv[0] << " <nombre_del_archivo> <archivo_de_patrones>" << std::endl;
         return EXIT_FAILURE;
     }
 
