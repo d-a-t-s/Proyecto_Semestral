@@ -6,6 +6,8 @@
 #include <string_view>
 #include <filesystem>
 #include <cctype>
+#include <sstream>
+#include <algorithm>
 
 using namespace std;
 namespace fs = filesystem;

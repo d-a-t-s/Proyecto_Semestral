@@ -1,4 +1,4 @@
-#include "load_file.hpp"
+#include "../include/load_file.hpp"
 
 #include <fstream>
 #include <iostream>
@@ -26,7 +26,7 @@ namespace fs = filesystem;
 string load_file(const string& file_name){
 
     //Declaracion de la ruta del archivo que se va a cargar
-    fs::path directory = fs::path("../datasets/Concatenated") / file_name; //¿Esta bien si se le pasa asi el nombre del archivo considerando que se le esta pasando por referencia a la funcion?
+    fs::path directory = file_name;
 
     //Verificacion de que el archivo existe
     ifstream input(directory, ios::binary);
