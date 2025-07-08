@@ -132,16 +132,17 @@ int main(int argc, char* argv[]){
     double duracion = std::chrono::duration_cast<std::chrono::nanoseconds>(fin - inicio).count() * 1e-9;
     
     if (res.empty()) {
-    std::cout << "No se encontraron coincidencias para los patrones." << std::endl;
+        std::cout << "No se encontraron coincidencias para los patrones." << std::endl;
+        std::cout << duracion << std::endl;
     } else {
-        for (auto &inicio : res) {
-            std::cout << "Patron " << inicio.first << " encontrado en posiciones: ";
-            for (int pos : inicio.second) {
-                std::cout << pos << " ";
-            }
-            std::cout << std::endl;
-        }
-        std::cout << "Tiempo de busqueda: " << duracion << "s" << std::endl;
+        // for (auto &inicio : res) {
+        //     std::cout << "Patron " << inicio.first << " encontrado en posiciones: ";
+        //     for (int pos : inicio.second) {
+        //         std::cout << pos << " ";
+        //     }
+        //     std::cout << std::endl;
+        // }
+        std::cout << duracion << std::endl;
     }
     return 0;
 }
