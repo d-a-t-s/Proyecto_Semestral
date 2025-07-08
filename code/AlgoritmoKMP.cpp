@@ -1,6 +1,6 @@
 /**
- *  Compilar como: g++ -std=c++17 -I../include AlgoritmoKMP.cpp load_file.cpp load_patterns.cpp -o AlgoritmoKMP
- *  Ejecutar: .\algoritmokmp.exe <nombre_del_archivo_concatenado> <archivo_de_patrones>
+ *  Compilar como: g++ -std=c++17 -I../include AlgoritmoKMP.cpp load_file.cpp load_patterns.cpp -o kmp
+ *  Ejecutar: .\kmp.exe <nombre_del_archivo_concatenado> <archivo_de_patrones>
  * ************************************ 
  *  Programa en C++ para buscar un patrón en un texto dado 
  *  KMP Algorithm
@@ -131,10 +131,10 @@ int main(int argc, char* argv[]){
 
     double duracion = std::chrono::duration_cast<std::chrono::nanoseconds>(fin - inicio).count() * 1e-9;
     
-    if (res.empty()) {
-        std::cout << "No se encontraron coincidencias para los patrones." << std::endl;
-        std::cout << duracion << std::endl;
-    } else {
+    //if (res.empty()) {
+        //std::cout << "No se encontraron coincidencias para los patrones." << std::endl;
+        //std::cout << argv[0] << ";" << pat.size() << ";" << duracion << std::endl;
+    //} else {
         // for (auto &inicio : res) {
         //     std::cout << "Patron " << inicio.first << " encontrado en posiciones: ";
         //     for (int pos : inicio.second) {
@@ -142,7 +142,8 @@ int main(int argc, char* argv[]){
         //     }
         //     std::cout << std::endl;
         // }
-        std::cout << duracion << std::endl;
-    }
+        //std::cout << duracion << std::endl;
+    //}
+    std::cout << argv[0] << ";" << pat.size() << ";" << duracion << std::endl;
     return 0;
 }
