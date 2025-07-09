@@ -1,5 +1,5 @@
 /**
- *  Compilar como: g++ -std=c++17 -I../include Rabin-Karp.cpp load_file.cpp load_patterns.cpp -o algoritmork
+ *  Compilar como: g++ -std=c++17 -I../include Rabin-karp.cpp load_file.cpp load_patterns.cpp -o algoritmork
  *  Ejecutar: .\algoritmork <nombre_del_archivo_concatenado> <archivo_de_patrones>
  * ************************************ 
  *  Programa en C++ para buscar un patrón en un texto dado 

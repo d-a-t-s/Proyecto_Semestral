@@ -1,6 +1,6 @@
 /**
  *  Compilar como: g++ -std=c++17 -I../include Suffix_Array.cpp load_file.cpp load_patterns.cpp -o suffixar
- *  Ejecutar: .\suffixar <nombre_del_archivo_concatenado> <archivo_de_patrones>
+ *  Ejecutar: .\suffixar <nombre_del_archivo_concatenado> <archivo_de_patrones> ... <archivo_de_patrones_5>
  * ************************************ 
  *  Programa en C++ para buscar un patrón en un texto dado 
  *  Suffix Array 
@@ -197,17 +197,15 @@ void pattern_convert(string& pattern){
 int main(int argc, char* argv[]){
 
     //Verificacion del numero de agumentos, queremos [nombre_ejecutable, nombre_del_archivo, patron_a_buscar]
-    if(argc < 3 || argc > 3){
-        cerr << "Uso: " << argv[0] << " <nombre_del_archivo> <patron_a_buscar>" << endl;
+    if(argc < 3){
         return 1;
     }
 
-    //Guardado del nombre del archivo y del patron a buscar
+    //Guardado del nombre del archivo
     string file_name = argv[1];
-    string pattern = argv[2];
+
     
-    //Carga del archivo de texto y patrones
-    vector<string> pat=load_patterns(pattern);
+    //Carga del archivo de texto
     string corpus = load_file(file_name);
 
     //Creacion del suffix array del texto
@@ -217,22 +215,29 @@ int main(int argc, char* argv[]){
     double running_time_sa = chrono::duration_cast<chrono::nanoseconds>(end_sa - start_sa).count();
 
     size_t suffixArraySize = suffixArr.size() * sizeof(int);
+    running_time_sa *= 1e-9; //Conversion a segundos
+    cout << argv[0] << ";" << suffixArr.size() << ";" << running_time_sa << ";" << (suffixArraySize / 1024) << "KB" << endl;
+    
+   for (size_t i = 2; i < argc; i++)
+   {
+    //Guardado del nombre del archivo de patrones
+    string pattern = argv[i];
+
+    //Carga del archivo de patrones
+    vector<string> pat=load_patterns(pattern);
 
     auto start = chrono::high_resolution_clock::now();
     for (auto &pattern : pat){
+            
         pattern_convert(pattern);
         int matches = count_pattern_occurrences(corpus, pattern, suffixArr);
-        //Verificacion de la busqueda
-        if(matches == 0) {
-            cout << "No se encontraron ocurrencias del patrón en el archivo." << endl;
-        } else {
-            cout << "Se encontraron " << matches << " ocurrencias." << endl;
-        }
+
     }
     auto end = chrono::high_resolution_clock::now();
     double running_time = chrono::duration_cast<chrono::nanoseconds>(end - start).count();
-    running_time_sa *= 1e-9; //Conversion a segundos
     running_time *= 1e-9; //Conversion a segundos
-    cout << argv[0] << ";" << suffixArr.size() << ";" << running_time_sa << ";" << (suffixArraySize / 1024) << "KB" << ";" << pat.size() << ";" << running_time << endl;
+    cout << argv[0] << ";" << pat.size() << ";" << running_time << endl;
+    } 
+    
     return 0;
 }
